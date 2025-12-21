@@ -229,12 +229,12 @@
 \AddToHook{shipout/background}{
   \begin{tikzpicture}[remember~picture, overlay]
     \pgfmathsetlengthmacro{\framemargin}{5mm}
-    \pgfmathsetlengthmacro{\seallinewidth}{25mm} % 密封线区域宽度，避免边框与密封线重叠
+    \pgfmathsetlengthmacro{\seallinewidth}{18mm} % 密封线区域宽度，避免边框与密封线重叠
     \pgfmathsetlengthmacro{\gapwidth}{ 5mm} % A3 模式下左右框之间的间距
     
     % 计算页眉页脚区域高度，避免边框与页眉页脚重叠
     \pgfmathsetlengthmacro{\topmargin}{\headheight  + \framemargin}
-    \pgfmathsetlengthmacro{\bottommargin}{ \footskip + \framemargin}
+    \pgfmathsetlengthmacro{\bottommargin}{ \footskip + \framemargin +7mm}
     
     % 检测是否是 A3 纸张（A3 宽度约 297mm，A4 宽度约 210mm）
     \pgfmathparse{\paperwidth > 280mm ? 1 : 0}
