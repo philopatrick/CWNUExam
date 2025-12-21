@@ -35,6 +35,9 @@
 
 \AtEndPreamble
   {
+    % 增加左边距，避免内容从左侧溢出
+    \geometry{left=25mm} % 增加左边距到25mm（密封线区域宽度）
+    
     \tl_if_empty:NF { \l__ustbexam_global_watermark }
       {
         \RequirePackage{background}
@@ -51,6 +54,7 @@
       }
   }
 
+
 % 试卷内标题处的参数
 \keys_define:nn { ustb-exam / title }
   {
@@ -60,15 +64,31 @@
     suffix     .tl_set:N  = \l__ustbexam_title_suffix_str,
     type       .str_set:N = \l__ustbexam_title_type_str,
     total-part .int_set:N = \l__ustbexam_title_total_part_int,
+    college    .tl_set:N  = \l__ustbexam_title_college_str,
+    major      .tl_set:N  = \l__ustbexam_title_major_str,
+    grade      .tl_set:N  = \l__ustbexam_title_grade_str,
+    exam-room  .tl_set:N  = \l__ustbexam_title_exam_room_str,
+    exam-type  .tl_set:N  = \l__ustbexam_title_exam_type_str,
+    exam-time  .int_set:N = \l__ustbexam_title_exam_time_int,
+    exam-category .tl_set:N = \l__ustbexam_title_exam_category_str,
+    test-type  .tl_set:N  = \l__ustbexam_title_test_type_str,
   }
 \keys_set:nn { ustb-exam / title }
   {
     year       = {\the\year},
     semester   = {一},
-    course     = {微积分AI},
+    course     = {JAVA Programming Language},
     suffix     = {},
     type       = {A},
     total-part = {4},
+    college    = {计算机学院},
+    major      = {软件工程专业},
+    grade      = {2024级},
+    exam-room  = {},
+    exam-type  = {闭卷},
+    exam-time  = {120},
+    exam-category = {考试},
+    test-type  = {normal},  % normal 或 international
   }
 \keys_define:nn { ustb-exam }
   { title .meta:nn = { ustb-exam / title } {#1} }
@@ -156,11 +176,100 @@
 % 使用钩子在每次调用 \section 和 \section* 时递增计数器
 \AddToHook{ cmd / section / before }{ \stepcounter{sectioncounter} }
 
+% 覆盖 section 定义（在 exam-zh 重定义之后）
+% exam-zh 会在 \AtEndPreamble 时根据 scoringbox/type 重定义 section
+% 我们需要在 \AtBeginDocument 时再次覆盖，以便自定义格式
+\AtBeginDocument{
+  % 保存 exam-zh 的原始 section 定义
+  \@ifundefined{examzholdsection}{
+    % 如果 exam-zh 没有保存原始 section，我们自己保存
+    \NewCommandCopy { \examzholdsection } { \section }
+  }{}
+  % 重新定义 section，创建自定义的评分框格式
+  % 格式：评分框在 section 标题上方，第一行是"得分"和"阅卷人"两列，第二行是两列空格
+  \RenewDocumentCommand { \section } { s o m }
+    {
+      \IfBooleanTF {#1}
+        {
+          % \section* 的情况，不显示评分框
+          \examzholdsection*{#3}
+        }
+        {
+          % \section 的情况，显示自定义评分框在标题上方
+          \par\addvspace{1.5em}\noindent
+          % 评分框（在标题上方，左对齐）
+          \begin{tabular}{|c|c|}
+            \hline 
+            得分 & 阅卷人\rule[-0.7em]{0pt}{2em} \\\hline
+            \rule{1.5em}{0pt}\rule[-0.7em]{0pt}{2em} & \rule{1.5em}{0pt}\rule[-0.7em]{0pt}{2em} \\\hline
+          \end{tabular}
+          \vspace{0.5em}
+          % section 标题
+          \IfNoValueTF {#2}
+            {
+              \examzholdsection{#3}
+            }
+            {
+              \examzholdsection[#2]{#3}
+            }
+          \par
+          \addvspace{1em}
+        }
+    }
+}
+
 % 脚注编号每页清零
 \AddToHook{ shipout / before }
   {
     \global\c@footnote=0
   }
+
+% 添加页面边框框
+% A3 纸张宽度为 297mm，A4 纸张宽度为 210mm
+\AddToHook{shipout/background}{
+  \begin{tikzpicture}[remember~picture, overlay]
+    \pgfmathsetlengthmacro{\framemargin}{5mm}
+    \pgfmathsetlengthmacro{\seallinewidth}{25mm} % 密封线区域宽度，避免边框与密封线重叠
+    \pgfmathsetlengthmacro{\gapwidth}{ 5mm} % A3 模式下左右框之间的间距
+    
+    % 计算页眉页脚区域高度，避免边框与页眉页脚重叠
+    \pgfmathsetlengthmacro{\topmargin}{\headheight  + \framemargin}
+    \pgfmathsetlengthmacro{\bottommargin}{ \footskip + \framemargin}
+    
+    % 检测是否是 A3 纸张（A3 宽度约 297mm，A4 宽度约 210mm）
+    \pgfmathparse{\paperwidth > 280mm ? 1 : 0}
+    \ifnum\pgfmathresult=1
+      % A3 纸张：绘制左右两个框
+      % 左边框（避开密封线区域和页眉页脚）
+      \draw[line~width=0.8pt, black]
+        ([xshift=\seallinewidth, yshift=-\topmargin]current~page.north~west)
+        rectangle
+        ([xshift={\paperwidth/2 - \gapwidth/2}, yshift=\bottommargin]current~page.south~west);
+      % 右边框（从页面中间开始，避开页眉页脚）
+      \draw[line~width=0.8pt, black]
+        ([xshift={\paperwidth/2 + \gapwidth/2}, yshift=-\topmargin]current~page.north~west)
+        rectangle
+        ([xshift=-\framemargin, yshift=\bottommargin]current~page.south~east);
+    \else
+      % A4 纸张：绘制单个框（避开密封线区域和页眉页脚）
+      % 检测当前页是奇数页还是偶数页
+      \pgfmathparse{mod(\thepage,2) == 1 ? 1 : 0}
+      \ifnum\pgfmathresult=1
+        % 奇数页：密封线在左侧，边框从密封线右侧开始
+        \draw[line~width=0.8pt, black]
+          ([xshift=\seallinewidth, yshift=-\topmargin]current~page.north~west)
+          rectangle
+          ([xshift=-\framemargin, yshift=\bottommargin]current~page.south~east);
+      \else
+        % 偶数页：密封线在右侧，边框到密封线左侧结束
+        \draw[line~width=0.8pt, black]
+          ([xshift=\framemargin, yshift=-\topmargin]current~page.north~west)
+          rectangle
+          ([xshift=-\seallinewidth, yshift=\bottommargin]current~page.south~east);
+      \fi
+    \fi
+  \end{tikzpicture}
+}
 
 % 暂时不做自动获取, 有困难需解决
 
@@ -168,39 +277,82 @@
 \RenewDocumentCommand \maketitle { }
   {
     \cleardoublepage
-    \chapter{北京科技大学 \l_ustbexam_title_tl}
+    \chapter{西华师范大学学生试卷}
     \begingroup
     \begin { center }
     \let \footnote \thanks
       {
-        \kaishu
-        \LARGE \bfseries 北京科技大学~ \int_eval:n { \l__ustbexam_title_year_int } -- \int_eval:n {\l__ustbexam_title_year_int + 1} ~学年\,%
-        第~ \l__ustbexam_title_semester{} ~学期 \par
-        \underline{\quad \l__ustbexam_title_course_real \quad} \l__ustbexam_title_suffix_real \l__ustbexam_title_type_real
+        % 主标题：西华师范大学学生试卷（一号黑体）
+        {\fontsize{26pt}{31.2pt}\selectfont\heiti 西华师范大学学生试卷} \par
+        \vspace{0.5em}
+        % 考试信息行：年   月   日        2017-2018学年第 1  学期           考室
+        {
+          \kaishu
+          年 \quad 月 \quad 日 \quad\quad\quad
+          \int_eval:n { \l__ustbexam_title_year_int } -- \int_eval:n {\l__ustbexam_title_year_int + 1} 学年第~ \l__ustbexam_title_semester{} ~ 学期 \quad\quad\quad
+          考室 \underline{\quad\quad\quad\quad} \l__ustbexam_title_exam_room_str
+        } \par
+        \vspace{0.5em}
+        % 得分表格
+        {\kaishu \bfseries \ScoreTable { \l__ustbexam_title_total_part_int } } \par
+        \vspace{0.5em}
+        % 课程信息：××学院××专业××级《 》试题 A(或B)卷（四号黑体）
+        {
+          \fontsize{14pt}{16.8pt}\selectfont\heiti
+          \l__ustbexam_title_college_str\l__ustbexam_title_major_str\l__ustbexam_title_grade_str《\l__ustbexam_title_course_str》试题 \l__ustbexam_title_type_str 卷
+        } \par
+        \vspace{0.3em}
+        % 考试类型和时间（五号宋体）
+        {
+          \fontsize{10.5pt}{12.6pt}\selectfont\songti
+          \str_if_eq:VnTF \l__ustbexam_title_exam_type_str {开卷}
+            {
+              % 开卷时只显示：开卷考试 时间120分钟 或 开卷考查 时间90分钟
+              \l__ustbexam_title_exam_type_str\l__ustbexam_title_exam_category_str 时间 \int_use:N \l__ustbexam_title_exam_time_int 分钟
+            }
+            {
+              % 闭卷时显示：闭卷(或开卷)考试(或考查) 时间120(或90)分钟
+              \l__ustbexam_title_exam_type_str \l__ustbexam_title_exam_category_str  时间 \int_use:N \l__ustbexam_title_exam_time_int 分钟
+            }
+        }
       }
     \end { center }
     \endgroup
     \begingroup
-      {
-        \kaishu
-        院(系)\hrulefill\,~
-        班级\hrulefill\,~
-        姓名\hrulefill\,~
-        学号\hrulefill\,~
-        考试教室\hrulefill\,
-      }
-    \endgroup
-    \begingroup
-      {\kaishu \bfseries \ScoreTable { \l__ustbexam_title_total_part_int } }
-    \endgroup
-    \begingroup
-      {\par 说明：}
-    \begin{minipage}[t]{.9\textwidth}
-      1、要求正确地写出主要计算或推导过程，过程有错或只写答案者不得分；\par
-      2、 考场、学院、班级、学号、姓名均需写全，不写全的试卷为废卷；\par
-      3、 涂改学号及姓名的试卷为废卷；\par
-      4、 请在试卷上答题，在其他纸张上的解答一律无效.
-    \end{minipage}
+      \str_if_eq:VnTF \l__ustbexam_title_test_type_str {international}
+        {
+          % English version
+          {\par \bfseries Notes:}
+          \begin{minipage}[t]{.9\textwidth}
+            \begingroup
+            \raggedright
+            \setlength{\parindent}{0pt}
+            \setlength{\parskip}{0.5em}
+            \makeatletter
+            \let\save@xobeysp\@xobeysp
+            \def\@xobeysp{\ }
+            \makeatother
+            1. Full score: 100 points. Keep paper neat, otherwise 2 points deducted.\par
+            2. Submit both question and answer sheets together, otherwise points deducted.\par
+            3. Fill in name, class, and student ID in sealed section, otherwise paper void.\par
+            4. Students must sign in, otherwise omissions are student's responsibility.
+            \makeatletter
+            \let\@xobeysp\save@xobeysp
+            \makeatother
+            \endgroup
+          \end{minipage}
+        }
+        {
+          % Chinese version
+          {\par \bfseries 注意事项：}
+          \begin{minipage}[t]{.9\textwidth}
+            \kaishu
+            1、满分:100分。保持卷面整洁,否则扣卷面2分。\par
+            2、交卷时请将试题卷与答题卷一起交,否则扣分。\par
+            3、学生必须将姓名、班级、学号完整填写在规定的密封栏目内,否则视为废卷。\par
+            4、学生必须签到,否则出现遗漏由学生本人负责。
+          \end{minipage}
+        }
     \endgroup
   }
 
@@ -254,21 +406,25 @@
     \begin{ center }
     \int_compare:nTF { #1 > 0 }
       {
+        % 计算需要显示的列数（最多10题，加上题号、总分、阅卷教师）
+        \int_set:Nn \l_tmpa_int { \int_min:nn { #1 } { 10 } }
+        % 设置表格宽度为 A4 宽度的 80%（A4 宽度 210mm，80% = 168mm）
         \begin{tabularx}
-          {\textwidth}{ |p{4em}<{\centering} *{#1}{|X<{\centering}} | c |}
+          {168mm}{ |p{3em}<{\centering} *{\l_tmpa_int}{|X<{\centering}} |X<{\centering}|X<{\centering}|}
           \hline
-          题号 & \repeatcell{#1}{text = \zhnumber{##1}} & \makecell[c]{{\tiny ~} \\[-.9em]课程考核成绩\\[-.9em]{\tiny ~}} \\
+          题号 & \repeatcell{\l_tmpa_int}{text = \zhnumber{##1}} & 总分 & 阅卷教师 \\
           \hline
-          得分 & \eline{\int_eval:n { #1 + 1} }                                  \\
+          得分 & \repeatcell{\l_tmpa_int}{text = \ } & & \\
           \hline
         \end{tabularx}
       }{
+        % 设置表格宽度为 A4 宽度的 80%（A4 宽度 210mm，80% = 168mm）
         \begin{tabularx}
-          {\textwidth}{ |p{4em}<{\centering} | X<{\centering} | }
+          {168mm}{ |p{3em}<{\centering} | X<{\centering} | X<{\centering} | }
           \hline
-          题号 & \makecell[c]{{\tiny ~} \\[-.9em]课程考核成绩\\[-.9em]{\tiny ~}} \\
+          题号 & 总分 & 阅卷教师 \\
           \hline
-          得分 &                        \\
+          得分 & & \\
           \hline
         \end{tabularx}
       }
@@ -352,26 +508,35 @@
 \examsetup{
     page = {
         foot-content = {
-            \kaishu \l_ustbexam_title_tl \, 第~\thepage~页 \quad 共~\realLastPageMinusOne~页
+            \kaishu  第~\thepage~页 \quad 共~\realLastPageMinusOne~页
           },
         foot-type = common,
         show-chapter = false,
       },
     sealline = {
         show        = true,
-        scope       = mod-2,
+        scope       = oddpage,
         circle-show = false,
         line-type   = dotted,
-        odd-info-content = {{装},{订},{线},{内},{不},{要},{答},{题}},
+        odd-info-content = {
+          {\kaishu 姓名}：{\underline{\hspace*{8em}}},
+          {\kaishu 学号}：{\underline{\hspace*{8em}}},
+          {\kaishu 学院}：{\underline{\hspace*{8em}}},
+          {\kaishu 级}：{\underline{\hspace*{8em}}},
+          {\kaishu 专业}：{\underline{\hspace*{8em}}},
+          {\kaishu 班}：{\underline{\hspace*{8em}}}
+        },
         odd-info-xshift = 12mm,
-        text = {自觉遵守考试规则，诚信考试，绝不作弊},% \\装订线内不要答题},
+       
+        text = {装订线内不要答题},
         text-direction-vertical = true,
         text-width = 0.6\textheight,
         text-format  = \normalfont,
-        text-xshift = 20mm
+        text-xshift = 18mm,
+      
       },
     choices/label=(\Alph*),
-    scoringbox/type = onecolumn,
+    scoringbox/type = twocolumn,
     symbols/change-frac-style = true,
     symbols/change-dfrac-style = true,
     solution/blank-type = manual,
@@ -564,7 +729,9 @@
     #1
   }
 
-\RequirePackage{fontawesome, tikz}
+\RequirePackage{tikz}
+% 不使用 fontawesome，定义替代命令
+\NewDocumentCommand{\faMortarBoard}{}{\text{【注】}}
 
 \NewDocumentEnvironment{ notes }{ O{ } o o +b }
   {
@@ -644,6 +811,38 @@
 % 试卷头计分表中大题的数目
 \NewDocumentCommand \TotalPart { m }
   { \int_set:Nn \l__ustbexam_title_total_part_int {#1} }
+
+% 学院
+\NewDocumentCommand \College { m }
+  { \tl_set:Nn \l__ustbexam_title_college_str {#1} }
+
+% 专业
+\NewDocumentCommand \Major { m }
+  { \tl_set:Nn \l__ustbexam_title_major_str {#1} }
+
+% 级
+\NewDocumentCommand \Grade { m }
+  { \tl_set:Nn \l__ustbexam_title_grade_str {#1} }
+
+% 考室
+\NewDocumentCommand \ExamRoom { m }
+  { \tl_set:Nn \l__ustbexam_title_exam_room_str {#1} }
+
+% 考试类型
+\NewDocumentCommand \ExamType { m }
+  { \tl_set:Nn \l__ustbexam_title_exam_type_str {#1} }
+
+% 考试时间
+\NewDocumentCommand \ExamTime { m }
+  { \int_set:Nn \l__ustbexam_title_exam_time_int {#1} }
+
+% 考试类别（考试或考查）
+\NewDocumentCommand \ExamCategory { m }
+  { \tl_set:Nn \l__ustbexam_title_exam_category_str {#1} }
+
+% 测试类型（normal 或 international）
+\NewDocumentCommand \TestType { m }
+  { \tl_set:Nn \l__ustbexam_title_test_type_str {#1} }
 
 % PDF 主题信息
 \NewDocumentCommand \Subject { m }
