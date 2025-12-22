@@ -229,7 +229,7 @@
 \AddToHook{shipout/background}{
   \begin{tikzpicture}[remember~picture, overlay]
     \pgfmathsetlengthmacro{\framemargin}{5mm}
-    \pgfmathsetlengthmacro{\seallinewidth}{18mm} % 密封线区域宽度，避免边框与密封线重叠
+    \pgfmathsetlengthmacro{\seallinewidth}{16mm} % 密封线区域宽度，避免边框与密封线重叠
     \pgfmathsetlengthmacro{\gapwidth}{ 5mm} % A3 模式下左右框之间的间距
     
     % 计算页眉页脚区域高度，避免边框与页眉页脚重叠
@@ -527,7 +527,7 @@
           {\kaishu 班}：{\underline{\hspace*{8em}}}
         },
         odd-info-xshift = 12mm,
-       
+        line-xshift = 20.5mm,
         text = {装订线内不要答题},
         text-direction-vertical = true,
         text-width = 0.6\textheight,
