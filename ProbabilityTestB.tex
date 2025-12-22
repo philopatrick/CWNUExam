@@ -1,0 +1,351 @@
+% !TEX encoding = UTF-8
+% !TEX program = latexmk
+\documentclass{USTBExam}
+
+\ustbexamsetup{
+pdf = {
+title    = {概率论与数理统计期末考试试卷B卷},
+author   = {Computer Science Department},
+subject  = {For internal academic use only},
+keywords = {概率论; 数理统计; 期末考试},
+},
+}
+
+\ustbexamsetup{
+title = {
+year       = {\the\year},
+semester   = {1},
+course     = {Probability and Statistics},
+suffix     = {期末},
+type       = {B},
+total-part = {4},
+college    = {计算机学院},
+major      = {软件工程专业},
+grade      = {2023级},
+exam-type  = {闭卷},
+exam-time  = {120},
+exam-category = {考试},
+test-type  = {normal},
+},
+}
+
+\examsetup{page/size = a3paper}
+
+\begin{document}
+\maketitle
+
+\section{Part A: Multiple Choice Questions (15 \times 3 = 45)}
+
+\begin{question}
+An event in probability is:
+\paren
+\begin{choices}
+\item A number
+\item A random variable
+\item A subset of the sample space
+\item A probability
+\end{choices}
+\end{question}
+
+\begin{question}
+The sample space for rolling a die once has:
+\paren
+\begin{choices}
+\item 1 outcome
+\item 6 outcomes
+\item 12 outcomes
+\item Infinite outcomes
+\end{choices}
+\end{question}
+
+\begin{question}
+If $P(A)=0.4$ and $P(B)=0.5$ for independent events, then $P(A\cap B)=$
+\paren
+\begin{choices}
+\item 0.2
+\item 0.9
+\item 0.4
+\item 0.5
+\end{choices}
+\end{question}
+
+\begin{question}
+The number of combinations of 5 objects taken 3 at a time is:
+\paren
+\begin{choices}
+\item 10
+\item 20
+\item 30
+\item 60
+\end{choices}
+\end{question}
+
+\begin{question}
+A random variable taking values $0,1,2,\ldots$ is:
+\paren
+\begin{choices}
+\item Bernoulli
+\item Binomial
+\item Poisson
+\item Continuous
+\end{choices}
+\end{question}
+
+\begin{question}
+The mean of a Poisson($\lambda$) random variable is:
+\paren
+\begin{choices}
+\item $1/\lambda$
+\item $\lambda$
+\item $\lambda^2$
+\item $\sqrt{\lambda}$
+\end{choices}
+\end{question}
+
+\begin{question}
+For a Binomial random variable, the variance is:
+\paren
+\begin{choices}
+\item $np$
+\item $p(1-p)$
+\item $np(1-p)$
+\item $n(1-p)$
+\end{choices}
+\end{question}
+
+\begin{question}
+The probability for a continuous random variable is calculated using:
+\paren
+\begin{choices}
+\item Summation
+\item Counting
+\item Integration
+\item Multiplication
+\end{choices}
+\end{question}
+
+\begin{question}
+The exponential distribution is defined on:
+\paren
+\begin{choices}
+\item $(-\infty,\infty)$
+\item $(0,1)$
+\item $(0,\infty)$
+\item $(-1,1)$
+\end{choices}
+\end{question}
+
+\begin{question}
+If $f(x)\ge0$ and $\int f(x),dx=1$, then $f(x)$ is a:
+\paren
+\begin{choices}
+\item Distribution
+\item Density function
+\item Random variable
+\item Probability
+\end{choices}
+\end{question}
+
+\begin{question}
+Covariance measures:
+\paren
+\begin{choices}
+\item Mean
+\item Spread
+\item Linear relationship
+\item Probability
+\end{choices}
+\end{question}
+
+\begin{question}
+If $X$ and $Y$ are independent, then:
+\paren
+\begin{choices}
+\item $E[XY]=E[X]E[Y]$
+\item $E[XY]=0$
+\item $\mathrm{Var}(XY)=0$
+\item $X=Y$
+\end{choices}
+\end{question}
+
+\begin{question}
+The sample mean $\bar X$ is an estimator of:
+\paren
+\begin{choices}
+\item Variance
+\item Median
+\item Population mean
+\item Mode
+\end{choices}
+\end{question}
+
+\begin{question}
+The Central Limit Theorem requires:
+\paren
+\begin{choices}
+\item Normal population
+\item Large sample size
+\item Discrete variables only
+\item Zero variance
+\end{choices}
+\end{question}
+
+\begin{question}
+Least squares estimation is mainly used in:
+\paren
+\begin{choices}
+\item Hypothesis testing
+\item Parameter estimation
+\item Sampling
+\item Simulation
+\end{choices}
+\end{question}
+
+\section{Part B: Fill in the Blanks (5 \times 1 = 5)}
+
+\begin{question}
+$P(A\cup B)=P(A)+P(B)-$\fillin.
+\end{question}
+
+\begin{question}
+The variance of a Bernoulli($p$) variable is \fillin.
+\end{question}
+
+\begin{question}
+The expected value of a fair die is \fillin.
+\end{question}
+
+\begin{question}
+The density of a continuous random variable integrates to \fillin.
+\end{question}
+
+\begin{question}
+In the CLT, the limiting distribution is \fillin.
+\end{question}
+
+\section{Part C: Term Explanation (5 \times 2 = 10)}
+
+\begin{problem}Random Experiment\end{problem}
+\begin{problem}Conditional Probability\end{problem}
+\begin{problem}Probability Density Function (PDF)\end{problem}
+\begin{problem}Covariance\end{problem}
+\begin{problem}Central Limit Theorem\end{problem}
+
+\section{Part D: Calculation Questions (2 \times 20 = 40)}
+
+\begin{problem}
+A disease affects 2% of a population. A test detects the disease correctly 95% of the time and has a false positive rate of 5%.
+\begin{enumerate}
+\item Write the formula for $P(D\mid +)$.
+\item Explain what this probability represents.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let a random variable $X$ have density $f(x)=2x$, $0<x<1$.
+\begin{enumerate}
+\item Find $E[X]$.
+\item Find $\mathrm{Var}(X)$.
+\end{enumerate}
+\end{problem}
+
+
+
+
+% =========================
+% Answer Sheet (One Page)
+% =========================
+\newpage
+
+\noindent\textbf{Student Name:} \underline{\hspace{6cm}}
+
+\textbf{Student ID:} \underline{\hspace{6cm}}
+
+\vspace{0.6cm}
+\noindent\textbf{Section A: Multiple Choice (1--15)}\\[0.2cm]
+\noindent
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5  \\
+\hline
+\underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}}  \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+6 & 7 & 8 & 9 & 10  \\
+\hline
+\underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}}  \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+11 & 12 & 13 & 14 & 15 \\
+\hline
+\underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}} & \underline{\hspace{1.6cm}}  \\
+\hline
+\end{tabular}
+
+\vspace{0.8cm}
+\noindent\textbf{Section B: Fill in the Blanks (1--5)}\\[0.2cm]
+\noindent
+1.\ \underline{\hspace{17cm}}\\[0.4cm]
+2.\ \underline{\hspace{17cm}}\\[0.4cm]
+3.\ \underline{\hspace{17cm}}\\[0.4cm]
+4.\ \underline{\hspace{17cm}}\\[0.4cm]
+5.\ \underline{\hspace{17cm}}\\[0.4cm]
+
+\vspace{0.6cm}
+\noindent\textbf{Section C: Short Answers (1--5)}\\[0.2cm]
+\noindent
+1.\ \underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+2.\ \underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+3.\ \underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+4.\ \underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+5.\ \underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\underline{\hspace{17cm}}\\[0.5cm]
+\vspace{0.6cm}
+\noindent\textbf{Section D: Design Questions (1--2)}\\[0.2cm]
+\noindent
+\textbf{D1:}\\[0.2cm]
+    \underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+
+\newpage
+\textbf{D2:}\\[0.2cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+\underline{\hspace{17cm}}\\[0.35cm]
+
+\end{document}
+
+\end{document}

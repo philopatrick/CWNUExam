@@ -176,47 +176,47 @@
 % 使用钩子在每次调用 \section 和 \section* 时递增计数器
 \AddToHook{ cmd / section / before }{ \stepcounter{sectioncounter} }
 
-% 覆盖 section 定义（在 exam-zh 重定义之后）
-% exam-zh 会在 \AtEndPreamble 时根据 scoringbox/type 重定义 section
-% 我们需要在 \AtBeginDocument 时再次覆盖，以便自定义格式
-\AtBeginDocument{
-  % 保存 exam-zh 的原始 section 定义
-  \@ifundefined{examzholdsection}{
-    % 如果 exam-zh 没有保存原始 section，我们自己保存
-    \NewCommandCopy { \examzholdsection } { \section }
-  }{}
-  % 重新定义 section，创建自定义的评分框格式
-  % 格式：评分框在 section 标题上方，第一行是"得分"和"阅卷人"两列，第二行是两列空格
-  \RenewDocumentCommand { \section } { s o m }
-    {
-      \IfBooleanTF {#1}
-        {
-          % \section* 的情况，不显示评分框
-          \examzholdsection*{#3}
-        }
-        {
-          % \section 的情况，显示自定义评分框在标题上方
-          \par\addvspace{1.5em}\noindent
-          % 评分框（在标题上方，左对齐）
-          \begin{tabular}{|c|c|}
-            \hline 
-            得分 & 阅卷人\rule[-0.7em]{0pt}{2em} \\\hline
-            \rule{1.5em}{0pt}\rule[-0.7em]{0pt}{2em} & \rule{1.5em}{0pt}\rule[-0.7em]{0pt}{2em} \\\hline
-          \end{tabular}
-          \vspace{0.5em}
-          % section 标题
-          \IfNoValueTF {#2}
-            {
-              \examzholdsection{#3}
-            }
-            {
-              \examzholdsection[#2]{#3}
-            }
-          \par
-          \addvspace{1em}
-        }
-    }
-}
+% % 覆盖 section 定义（在 exam-zh 重定义之后）
+% % exam-zh 会在 \AtEndPreamble 时根据 scoringbox/type 重定义 section
+% % 我们需要在 \AtBeginDocument 时再次覆盖，以便自定义格式
+% \AtBeginDocument{
+%   % 保存 exam-zh 的原始 section 定义
+%   \@ifundefined{examzholdsection}{
+%     % 如果 exam-zh 没有保存原始 section，我们自己保存
+%     \NewCommandCopy { \examzholdsection } { \section }
+%   }{}
+%   % 重新定义 section，创建自定义的评分框格式
+%   % 格式：评分框在 section 标题上方，第一行是"得分"和"阅卷人"两列，第二行是两列空格
+%   \RenewDocumentCommand { \section } { s o m }
+%     {
+%       \IfBooleanTF {#1}
+%         {
+%           % \section* 的情况，不显示评分框
+%           \examzholdsection*{#3}
+%         }
+%         {
+%           % \section 的情况，显示自定义评分框在标题上方
+%           \par\addvspace{1em}\noindent
+%           % 评分框（在标题上方，左对齐）
+%           \begin{tabular}{|c|c|}
+%             \hline 
+%             得分 & 阅卷人\rule[-0.7em]{0pt}{2em} \\\hline
+%             \rule{1.5em}{0pt}\rule[-0.7em]{0pt}{2em} & \rule{1.5em}{0pt}\rule[-0.7em]{0pt}{2em} \\\hline
+%           \end{tabular}
+%           \vspace{0.5em}
+%           % section 标题
+%           \IfNoValueTF {#2}
+%             {
+%               \examzholdsection{#3}
+%             }
+%             {
+%               \examzholdsection[#2]{#3}
+%             }
+%           \par
+%           \addvspace{0.5em}
+%         }
+%     }
+% }
 
 % 脚注编号每页清零
 \AddToHook{ shipout / before }
