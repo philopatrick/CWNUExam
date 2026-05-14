@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\ProvidesExplClass {USTBExam} {2025-11-02} {v2.3.8} {An exam template for USTB}
+\ProvidesExplClass {CWNUExam} {2025-11-02} {v2.3.8} {An exam template for CWNU}
 
 \AddToHook{package/exam-zh-symbols/before}{%
     \AtBeginDocument{\let\savedsim=\sim}
@@ -17,28 +17,27 @@
 \DeclareOption* { \PassOptionsToClass { \CurrentOption } { exam-zh } }
 \ProcessOptions*
 
-% 使用 l3keys 定义 \ustbexamsetup 配置命令
-\NewDocumentCommand \ustbexamsetup { m }
-  { \keys_set:nn { ustb-exam } {#1} }
-
+% 使用 l3keys 定义 \cwnuexamsetup 配置命令
+\NewDocumentCommand \cwnuexamsetup { m }
+  { \keys_set:nn { cwnu-exam } {#1} }
 % 全局配置
-\keys_define:nn { ustb-exam / global }
+\keys_define:nn { cwnu-exam / global }
   {
-    watermark .tl_set:N = \l__ustbexam_global_watermark,
+    watermark .tl_set:N = \l__cwnuexam_global_watermark,
   }
-\keys_set:nn { ustb-exam / global }
+\keys_set:nn { cwnu-exam / global }
   {
     watermark = {},
   }
-\keys_define:nn { ustb-exam }
-  { global .meta:nn = { ustb-exam / global } {#1} }
+\keys_define:nn { cwnu-exam }
+  { global .meta:nn = { cwnu-exam / global } {#1} }
 
 \AtEndPreamble
   {
     % 增加左边距，避免内容从左侧溢出
     \geometry{left=25mm} % 增加左边距到25mm（密封线区域宽度）
     
-    \tl_if_empty:NF { \l__ustbexam_global_watermark }
+    \tl_if_empty:NF { \l__cwnuexam_global_watermark }
       {
         \RequirePackage{background}
         \backgroundsetup{
@@ -48,7 +47,7 @@
             pages=all, % 应用到所有页面
             position=current~page.center, % 确保在页面正中心
             contents={
-                \includegraphics[width=0.6\paperwidth, keepaspectratio]{\l__ustbexam_global_watermark}
+                \includegraphics[width=0.6\paperwidth, keepaspectratio]{\l__cwnuexam_global_watermark}
               }
           }
       }
@@ -56,24 +55,24 @@
 
 
 % 试卷内标题处的参数
-\keys_define:nn { ustb-exam / title }
+\keys_define:nn { cwnu-exam / title }
   {
-    year       .int_set:N = \l__ustbexam_title_year_int,
-    semester   .tl_set:N  = \l__ustbexam_title_semester,
-    course     .tl_set:N  = \l__ustbexam_title_course_str,
-    suffix     .tl_set:N  = \l__ustbexam_title_suffix_str,
-    type       .str_set:N = \l__ustbexam_title_type_str,
-    total-part .int_set:N = \l__ustbexam_title_total_part_int,
-    college    .tl_set:N  = \l__ustbexam_title_college_str,
-    major      .tl_set:N  = \l__ustbexam_title_major_str,
-    grade      .tl_set:N  = \l__ustbexam_title_grade_str,
-    exam-room  .tl_set:N  = \l__ustbexam_title_exam_room_str,
-    exam-type  .tl_set:N  = \l__ustbexam_title_exam_type_str,
-    exam-time  .int_set:N = \l__ustbexam_title_exam_time_int,
-    exam-category .tl_set:N = \l__ustbexam_title_exam_category_str,
-    test-type  .tl_set:N  = \l__ustbexam_title_test_type_str,
+    year       .int_set:N = \l__cwnuexam_title_year_int,
+    semester   .tl_set:N  = \l__cwnuexam_title_semester,
+    course     .tl_set:N  = \l__cwnuexam_title_course_str,
+    suffix     .tl_set:N  = \l__cwnuexam_title_suffix_str,
+    type       .str_set:N = \l__cwnuexam_title_type_str,
+    total-part .int_set:N = \l__cwnuexam_title_total_part_int,
+    college    .tl_set:N  = \l__cwnuexam_title_college_str,
+    major      .tl_set:N  = \l__cwnuexam_title_major_str,
+    grade      .tl_set:N  = \l__cwnuexam_title_grade_str,
+    exam-room  .tl_set:N  = \l__cwnuexam_title_exam_room_str,
+    exam-type  .tl_set:N  = \l__cwnuexam_title_exam_type_str,
+    exam-time  .int_set:N = \l__cwnuexam_title_exam_time_int,
+    exam-category .tl_set:N = \l__cwnuexam_title_exam_category_str,
+    test-type  .tl_set:N  = \l__cwnuexam_title_test_type_str,
   }
-\keys_set:nn { ustb-exam / title }
+\keys_set:nn { cwnu-exam / title }
   {
     year       = {\the\year},
     semester   = {一},
@@ -90,35 +89,35 @@
     exam-category = {考试},
     test-type  = {normal},  % normal 或 international
   }
-\keys_define:nn { ustb-exam }
-  { title .meta:nn = { ustb-exam / title } {#1} }
+\keys_define:nn { cwnu-exam }
+  { title .meta:nn = { cwnu-exam / title } {#1} }
 
 % PDF 配置
-\keys_define:nn { ustb-exam / pdf }
+\keys_define:nn { cwnu-exam / pdf }
   {
-    title    .tl_set:N = \l__ustbexam_pdf_title,
-    subject  .tl_set:N = \l__ustbexam_pdf_subject,
-    author   .tl_set:N = \l__ustbexam_pdf_author,
-    keywords .tl_set:N = \l__ustbexam_pdf_keywords,
+    title    .tl_set:N = \l__cwnuexam_pdf_title,
+    subject  .tl_set:N = \l__cwnuexam_pdf_subject,
+    author   .tl_set:N = \l__cwnuexam_pdf_author,
+    keywords .tl_set:N = \l__cwnuexam_pdf_keywords,
   }
-\keys_set:nn { ustb-exam / pdf }
+\keys_set:nn { cwnu-exam / pdf }
   {
-    title    = \l_ustbexam_title_tl,
+    title    = \l_cwnuexam_title_tl,
     subject  = {},
     author   = \@author,
     keywords = {},
   }
-\keys_define:nn { ustb-exam }
-  { pdf .meta:nn = { ustb-exam / pdf } {#1} }
+\keys_define:nn { cwnu-exam }
+  { pdf .meta:nn = { cwnu-exam / pdf } {#1} }
 
 \AtBeginDocument
   {
     \hypersetup{
         pdfinfo={
-            Title    = {\l__ustbexam_pdf_title},
-            Author   = {\l__ustbexam_pdf_author},
-            Subject  = {\l__ustbexam_pdf_subject},
-            Keywords = {\l__ustbexam_pdf_keywords},
+            Title    = {\l__cwnuexam_pdf_title},
+            Author   = {\l__cwnuexam_pdf_author},
+            Subject  = {\l__cwnuexam_pdf_subject},
+            Keywords = {\l__cwnuexam_pdf_keywords},
           },
         colorlinks = true,
         linkcolor  = black,
@@ -126,47 +125,47 @@
   }
 
 % title 里的课程名
-\tl_new:N \l__ustbexam_title_course_real
+\tl_new:N \l__cwnuexam_title_course_real
 \AtBeginDocument{
-    \str_if_empty:NF {\l__ustbexam_title_course_str}
+    \str_if_empty:NF {\l__cwnuexam_title_course_str}
       {
-        \hbox_set:Nn \l_tmpa_box {\l__ustbexam_title_course_str}
+        \hbox_set:Nn \l_tmpa_box {\l__cwnuexam_title_course_str}
         \dim_set:Nn \l_tmpa_dim { \box_wd:N \l_tmpa_box * 2 }
-        \tl_set:Nn \l__ustbexam_title_course_real
+        \tl_set:Nn \l__cwnuexam_title_course_real
           {
-            \__examzh_spread_box:nn { \l_tmpa_dim } { \l__ustbexam_title_course_str }
+            \__examzh_spread_box:nn { \l_tmpa_dim } { \l__cwnuexam_title_course_str }
           }
       }
   }
 
 % 是否期中
-\tl_new:N \l__ustbexam_title_suffix_real
-\tl_set:Nn \l__ustbexam_title_suffix_real { 试卷 }
+\tl_new:N \l__cwnuexam_title_suffix_real
+\tl_set:Nn \l__cwnuexam_title_suffix_real { 试卷 }
 
 % 在文档开始前处理 suffix
 \AtBeginDocument{
-    \tl_if_empty:NF \l__ustbexam_title_suffix_str
+    \tl_if_empty:NF \l__cwnuexam_title_suffix_str
       {
-        \tl_set:Nx \l__ustbexam_title_suffix_real { \l__ustbexam_title_suffix_str 试卷 }
+        \tl_set:Nx \l__cwnuexam_title_suffix_real { \l__cwnuexam_title_suffix_str 试卷 }
       }
   }
 
 % 试卷类型
-\tl_new:N \l__ustbexam_title_type_real
-\tl_set:Nn \l__ustbexam_title_type_real
+\tl_new:N \l__cwnuexam_title_type_real
+\tl_set:Nn \l__cwnuexam_title_type_real
   {
     \bool_if:NTF \l__examzh_question_show_paren_answer_bool
-      { （\str_use:N \l__ustbexam_title_type_str 卷解析）}
-      { （\str_use:N \l__ustbexam_title_type_str 卷） }
+      { （\str_use:N \l__cwnuexam_title_type_str 卷解析）}
+      { （\str_use:N \l__cwnuexam_title_type_str 卷） }
   }
 
 % 标题
-\tl_new:N \l_ustbexam_title_tl
+\tl_new:N \l_cwnuexam_title_tl
 \AtBeginDocument{
-    \tl_set:Nn \l_ustbexam_title_tl
+    \tl_set:Nn \l_cwnuexam_title_tl
       {
-        \int_eval:n { \l__ustbexam_title_year_int } -- \int_eval:n {\l__ustbexam_title_year_int + 1} ~学年\,%
-        第 \l__ustbexam_title_semester{} 学期 \l__ustbexam_title_course_str \l__ustbexam_title_suffix_real \l__ustbexam_title_type_real
+        \int_eval:n { \l__cwnuexam_title_year_int } -- \int_eval:n {\l__cwnuexam_title_year_int + 1} ~学年\,%
+        第 \l__cwnuexam_title_semester{} 学期 \l__cwnuexam_title_course_str \l__cwnuexam_title_suffix_real \l__cwnuexam_title_type_real
       }
   }
 
@@ -289,37 +288,37 @@
         {
           \kaishu
           年 \quad 月 \quad 日 \quad\quad\quad
-          \int_eval:n { \l__ustbexam_title_year_int } -- \int_eval:n {\l__ustbexam_title_year_int + 1} 学年第~ \l__ustbexam_title_semester{} ~ 学期 \quad\quad\quad
-          考室 \underline{\quad\quad\quad\quad} \l__ustbexam_title_exam_room_str
+          \int_eval:n { \l__cwnuexam_title_year_int } -- \int_eval:n {\l__cwnuexam_title_year_int + 1} 学年第~ \l__cwnuexam_title_semester{} ~ 学期 \quad\quad\quad
+          考室 \underline{\quad\quad\quad\quad} \l__cwnuexam_title_exam_room_str
         } \par
         \vspace{0.5em}
         % 得分表格
-        {\kaishu \bfseries \ScoreTable { \l__ustbexam_title_total_part_int } } \par
+        {\kaishu \bfseries \ScoreTable { \l__cwnuexam_title_total_part_int } } \par
         \vspace{0.5em}
         % 课程信息：××学院××专业××级《 》试题 A(或B)卷（四号黑体）
         {
           \fontsize{14pt}{16.8pt}\selectfont\heiti
-          \l__ustbexam_title_college_str\l__ustbexam_title_major_str\l__ustbexam_title_grade_str《\l__ustbexam_title_course_str》试题 \l__ustbexam_title_type_str 卷
+          \l__cwnuexam_title_college_str\l__cwnuexam_title_major_str\l__cwnuexam_title_grade_str《\l__cwnuexam_title_course_str》试题 \l__cwnuexam_title_type_str 卷
         } \par
         \vspace{0.3em}
         % 考试类型和时间（五号宋体）
         {
           \fontsize{10.5pt}{12.6pt}\selectfont\songti
-          \str_if_eq:VnTF \l__ustbexam_title_exam_type_str {开卷}
+          \str_if_eq:VnTF \l__cwnuexam_title_exam_type_str {开卷}
             {
               % 开卷时只显示：开卷考试 时间120分钟 或 开卷考查 时间90分钟
-              \l__ustbexam_title_exam_type_str\l__ustbexam_title_exam_category_str 时间 \int_use:N \l__ustbexam_title_exam_time_int 分钟
+              \l__cwnuexam_title_exam_type_str\l__cwnuexam_title_exam_category_str 时间 \int_use:N \l__cwnuexam_title_exam_time_int 分钟
             }
             {
               % 闭卷时显示：闭卷(或开卷)考试(或考查) 时间120(或90)分钟
-              \l__ustbexam_title_exam_type_str \l__ustbexam_title_exam_category_str  时间 \int_use:N \l__ustbexam_title_exam_time_int 分钟
+              \l__cwnuexam_title_exam_type_str \l__cwnuexam_title_exam_category_str  时间 \int_use:N \l__cwnuexam_title_exam_time_int 分钟
             }
         }
       }
     \end { center }
     \endgroup
     \begingroup
-      \str_if_eq:VnTF \l__ustbexam_title_test_type_str {international}
+      \str_if_eq:VnTF \l__cwnuexam_title_test_type_str {international}
         {
           % English version
           {\par \bfseries Notes:}
@@ -498,17 +497,17 @@
 
 \RequirePackage{zref-user, refcount}
 
-% 定义一个命令：取 RealLastPage 页码 - 1，且不小于 1
-\NewDocumentCommand \realLastPageMinusOne {} {
+% 定义一个命令：取文档最后一页页码，且不小于 1
+\NewDocumentCommand \examLastPage {} {
     \int_eval:n {
-        \int_max:nn { 1 } { \zref@extractdefault{RealLastPage}{page}{0} - 1 }
+        \int_max:nn { 1 } { \getpagerefnumber{LastPage} }
       }
   }
 
 \examsetup{
     page = {
         foot-content = {
-            \kaishu  第~\thepage~页 \quad 共~\realLastPageMinusOne~页
+            \kaishu  第~\thepage~页 \quad 共~\examLastPage~页
           },
         foot-type = common,
         show-chapter = false,
@@ -582,28 +581,28 @@
   }
 
 % 封面配置
-\keys_define:nn { ustb-exam / cover }
+\keys_define:nn { cwnu-exam / cover }
   {
-    top      .tl_set:N = \l__ustbexam_cover_top,
-    title    .tl_set:N = \l__ustbexam_cover_title,
-    subtitle .tl_set:N = \l__ustbexam_cover_subtitle,
-    author   .tl_set:N = \l__ustbexam_cover_author,
-    date     .tl_set:N = \l__ustbexam_cover_date,
-    bottom   .tl_set:N = \l__ustbexam_cover_bottom,
-    bgimg    .tl_set:N = \l__ustbexam_cover_bgimg,
+    top      .tl_set:N = \l__cwnuexam_cover_top,
+    title    .tl_set:N = \l__cwnuexam_cover_title,
+    subtitle .tl_set:N = \l__cwnuexam_cover_subtitle,
+    author   .tl_set:N = \l__cwnuexam_cover_author,
+    date     .tl_set:N = \l__cwnuexam_cover_date,
+    bottom   .tl_set:N = \l__cwnuexam_cover_bottom,
+    bgimg    .tl_set:N = \l__cwnuexam_cover_bgimg,
   }
-\keys_set:nn { ustb-exam / cover }
+\keys_set:nn { cwnu-exam / cover }
   {
-    top      = 北京科技大学,
-    title    = 高等数学AI,
-    subtitle = 历年期中试卷合集,
-    author   = 黄腾,
+    top      = 西华师范大学,
+    title    = 西华师范大学试卷,
+    subtitle = 课程考试模板,
+    author   = 维护者,
     date     = \today,
-    bottom   = 假装有出版社,
+    bottom   = 西华师范大学,
     bgimg    = {},
   }
-\keys_define:nn { ustb-exam }
-  { cover .meta:nn = { ustb-exam / cover } {#1} }
+\keys_define:nn { cwnu-exam }
+  { cover .meta:nn = { cwnu-exam / cover } {#1} }
 
 % 定义 makeCover 命令
 \NewDocumentCommand \makeCover { }
@@ -612,19 +611,19 @@
     \pagestyle{myEmptyPage}
     \begin{titlepage}
       \setcounter{page}{0}
-      \tl_if_empty:NF { \l__ustbexam_cover_bgimg }
+      \tl_if_empty:NF { \l__cwnuexam_cover_bgimg }
         {
           \begin{tikzpicture}[remember~picture, overlay]
             \node[opacity=0.2,rotate=30] at ([shift={(-2.0cm, 0)}]current~page.center)
               {
-                \includegraphics[width=23cm]{\l__ustbexam_cover_bgimg}
+                \includegraphics[width=23cm]{\l__cwnuexam_cover_bgimg}
               };
           \end{tikzpicture}
         }
 
       \centering
 
-      \makebox[0.5\textwidth][s]{\huge \bfseries \l__ustbexam_cover_top}
+      \makebox[0.5\textwidth][s]{\huge \bfseries \l__cwnuexam_cover_top}
       \par\addvspace{2.5cm}
 
       \begin{tcolorbox}
@@ -637,19 +636,19 @@
         hyphenationfix,
         ]
         \Huge \bfseries
-        \makebox[0.6\textwidth][s]{\l__ustbexam_cover_title}
+        \makebox[0.6\textwidth][s]{\l__cwnuexam_cover_title}
         \par
-        \makebox[0.75\textwidth][s]{\l__ustbexam_cover_subtitle}
+        \makebox[0.75\textwidth][s]{\l__cwnuexam_cover_subtitle}
       \end{tcolorbox}
       \par\addvspace{1.5cm}
 
-      \parbox{0.4\textwidth}{\Large \centering \l__ustbexam_cover_author}
+      \parbox{0.4\textwidth}{\Large \centering \l__cwnuexam_cover_author}
       \par\addvspace{1cm}
 
-        {\l__ustbexam_cover_date}
+        {\l__cwnuexam_cover_date}
       \par\vfill
 
-      \makebox[0.3\textwidth][s]{\large \l__ustbexam_cover_bottom}
+      \makebox[0.3\textwidth][s]{\large \l__cwnuexam_cover_bottom}
     \end{titlepage}
     \restoregeometry
   }
@@ -790,67 +789,67 @@
 
 % 试卷头里的年份
 \NewDocumentCommand \Year { m }
-  { \int_set:Nn \l__ustbexam_title_year_int {#1} }
+  { \int_set:Nn \l__cwnuexam_title_year_int {#1} }
 
 % 试卷头里的学期
 \NewDocumentCommand \Semester { m }
-  { \tl_set:Nn \l__ustbexam_title_semester {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_semester {#1} }
 
 % 试卷头里的课程
 \NewDocumentCommand \Course { m }
-  { \str_set:Nn \l__ustbexam_title_course_str { #1 } }
+  { \str_set:Nn \l__cwnuexam_title_course_str { #1 } }
 
 % 是否期中
 \NewDocumentCommand \Suffix { m }
-  { \tl_set:Nn \l__ustbexam_title_suffix_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_suffix_str {#1} }
 
 % 试卷头里的类型，如A/B/模拟等
 \NewDocumentCommand \Type { m }
-  { \tl_set:Nn \l__ustbexam_title_type_str { #1 } }
+  { \tl_set:Nn \l__cwnuexam_title_type_str { #1 } }
 
 % 试卷头计分表中大题的数目
 \NewDocumentCommand \TotalPart { m }
-  { \int_set:Nn \l__ustbexam_title_total_part_int {#1} }
+  { \int_set:Nn \l__cwnuexam_title_total_part_int {#1} }
 
 % 学院
 \NewDocumentCommand \College { m }
-  { \tl_set:Nn \l__ustbexam_title_college_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_college_str {#1} }
 
 % 专业
 \NewDocumentCommand \Major { m }
-  { \tl_set:Nn \l__ustbexam_title_major_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_major_str {#1} }
 
 % 级
 \NewDocumentCommand \Grade { m }
-  { \tl_set:Nn \l__ustbexam_title_grade_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_grade_str {#1} }
 
 % 考室
 \NewDocumentCommand \ExamRoom { m }
-  { \tl_set:Nn \l__ustbexam_title_exam_room_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_exam_room_str {#1} }
 
 % 考试类型
 \NewDocumentCommand \ExamType { m }
-  { \tl_set:Nn \l__ustbexam_title_exam_type_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_exam_type_str {#1} }
 
 % 考试时间
 \NewDocumentCommand \ExamTime { m }
-  { \int_set:Nn \l__ustbexam_title_exam_time_int {#1} }
+  { \int_set:Nn \l__cwnuexam_title_exam_time_int {#1} }
 
 % 考试类别（考试或考查）
 \NewDocumentCommand \ExamCategory { m }
-  { \tl_set:Nn \l__ustbexam_title_exam_category_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_exam_category_str {#1} }
 
 % 测试类型（normal 或 international）
 \NewDocumentCommand \TestType { m }
-  { \tl_set:Nn \l__ustbexam_title_test_type_str {#1} }
+  { \tl_set:Nn \l__cwnuexam_title_test_type_str {#1} }
 
 % PDF 主题信息
 \NewDocumentCommand \Subject { m }
-  { \str_set:Nn \l__ustbexam_pdf_subject {#1} }
+  { \str_set:Nn \l__cwnuexam_pdf_subject {#1} }
 
 % PDF 关键词信息
 \NewDocumentCommand \Keywords { m }
-  { \str_set:Nn \l__ustbexam_pdf_keywords {#1} }
+  { \str_set:Nn \l__cwnuexam_pdf_keywords {#1} }
 
 \NewDocumentCommand \makehead {}
   {\maketitle}
@@ -902,4 +901,3 @@
         \newpage
       }
   }
-

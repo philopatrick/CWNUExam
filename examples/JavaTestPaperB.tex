@@ -1,23 +1,23 @@
 % !TEX encoding = UTF-8
 % !TEX program = latexmk
-\documentclass{USTBExam}
+\documentclass{CWNUExam}
 
-\ustbexamsetup{
+\cwnuexamsetup{
 pdf = {
-title    = {计算机学院软件工程专业2024级JAVA编程语言期末考试试卷A卷},
+title    = {计算机学院软件工程专业2024级JAVA编程语言期末考试试卷B卷},
 author   = {Computer Science Department},
 subject  = {For internal academic use only},
 keywords = {Java; Programming; Final Exam},
 },
 }
 
-\ustbexamsetup{
+\cwnuexamsetup{
 title = {
 year       = {\the\year},
 semester   = {1},
 course     = {JAVA Programming Language},
 suffix     = {期末},
-type       = {A},
+type       = {B},
 total-part = {4},
 college    = {计算机学院},
 major      = {软件工程专业},
@@ -37,84 +37,51 @@ test-type  = {normal},
 \section{Section A: Multiple Choice Questions (15 \times 3 = 45)}
 
 \begin{question}
-Which keyword is used to inherit a class in Java?
+Which keyword is used to create a class in Java?
 \paren
 \begin{choices}
-\item implements
-\item extends
 \item new
-\item super
-\end{choices}
-\end{question}
-
-\begin{question}
-Which data type is used to store a single character?
-\paren
-\begin{choices}
-\item String
-\item char
-\item int
-\item boolean
-\end{choices}
-\end{question}
-
-\begin{question}
-Which of the following is NOT a primitive data type?
-\paren
-\begin{choices}
-\item int
-\item double
-\item boolean
-\item String
-\end{choices}
-\end{question}
-
-\begin{question}
-Which method is the entry point of a Java program?
-\paren
-\begin{choices}
-\item start()
-\item run()
-\item main()
-\item init()
-\end{choices}
-\end{question}
-
-\begin{question}
-Which access modifier allows access only inside the same class?
-\paren
-\begin{choices}
-\item public
-\item protected
-\item private
-\item default
-\end{choices}
-\end{question}
-
-\begin{question}
-Which keyword is used to create an object in Java?
-\paren
-\begin{choices}
 \item class
 \item object
-\item new
-\item this
+\item interface
 \end{choices}
 \end{question}
 
 \begin{question}
-Which keyword refers to the current object?
+Which data type is used to store decimal numbers?
 \paren
 \begin{choices}
-\item super
-\item this
-\item current
-\item self
+\item int
+\item char
+\item float
+\item boolean
 \end{choices}
 \end{question}
 
 \begin{question}
-Which loop runs at least one time?
+Default value of a boolean variable is:
+\paren
+\begin{choices}
+\item true
+\item false
+\item 0
+\item null
+\end{choices}
+\end{question}
+
+\begin{question}
+Which symbol is used to access class members?
+\paren
+\begin{choices}
+\item \texttt{:}
+\item \texttt{.}
+\item \texttt{\#} % 使用 \# 避免参数字符错误
+\item \texttt{->}
+\end{choices}
+\end{question}
+
+\begin{question}
+Which loop is best used when the number of iterations is known?
 \paren
 \begin{choices}
 \item for
@@ -125,46 +92,46 @@ Which loop runs at least one time?
 \end{question}
 
 \begin{question}
-Which keyword is used to manually throw an exception?
+Which keyword is used for inheritance in Java?
 \paren
 \begin{choices}
-\item try
-\item catch
-\item throw
-\item throws
+\item implements
+\item extends
+\item inherit
+\item super
 \end{choices}
 \end{question}
 
 \begin{question}
-Which block always executes whether exception occurs or not?
+Method overriding occurs in:
 \paren
 \begin{choices}
-\item try
-\item catch
-\item final
-\item finally
+\item same class
+\item different classes
+\item interface only
+\item main method
 \end{choices}
 \end{question}
 
 \begin{question}
-Which feature supports method overriding?
+Which access modifier allows access within the same package?
 \paren
 \begin{choices}
-\item Encapsulation
-\item Inheritance
-\item Abstraction
-\item Compilation
+\item public
+\item private
+\item protected
+\item default
 \end{choices}
 \end{question}
 
 \begin{question}
-Which of the following best describes polymorphism?
+Which keyword refers to the parent class object?
 \paren
 \begin{choices}
-\item Same method name, different classes
-\item Same variable name
-\item Same class name
-\item Same package name
+\item this
+\item super
+\item parent
+\item base
 \end{choices}
 \end{question}
 
@@ -175,7 +142,7 @@ Which of the following is an interface keyword?
 \item class
 \item interface
 \item abstract
-\item implements
+\item extends
 \end{choices}
 \end{question}
 
@@ -184,45 +151,80 @@ Which exception occurs when dividing by zero?
 \paren
 \begin{choices}
 \item IOException
-\item NullPointerException
 \item ArithmeticException
-\item ArrayException
+\item NullPointerException
+\item ArrayIndexOutOfBoundsException
 \end{choices}
 \end{question}
 
 \begin{question}
-Which collection is used to store elements in order?
+Which block is used to handle exceptions?
 \paren
 \begin{choices}
-\item Set
-\item Map
-\item List
-\item Queue
+\item try
+\item catch
+\item finally
+\item all of these
 \end{choices}
 \end{question}
+
+\begin{question}
+Which feature of OOP hides data from outside access?
+\paren
+\begin{choices}
+\item Inheritance
+\item Polymorphism
+\item Encapsulation
+\item Abstraction
+\end{choices}
+\end{question}
+
+\begin{question}
+Which class is the parent of all Java classes?
+\paren
+\begin{choices}
+\item System
+\item Class
+\item Object
+\item Main
+\end{choices}
+\end{question}
+
+\begin{question}
+Which collection does NOT allow duplicate elements?
+\paren
+\begin{choices}
+\item List
+\item ArrayList
+\item Set
+\item Vector
+\end{choices}
+\end{question}
+
 
 
 \section{Section B: Fill in the Blanks (5 \times 1 = 5)}
 
 \begin{question}
-Java programs start execution from the \fillin method.
+The keyword used to define a class is \fillin.
 \end{question}
 
 \begin{question}
-The parent class of all Java classes is \fillin.
+An array stores \fillin type of values.
 \end{question}
 
 \begin{question}
-The keyword used to inherit a class is \fillin.
+The keyword used to handle exceptions is \fillin.
 \end{question}
 
 \begin{question}
-The \fillin block is used to handle exceptions.
+A method with the same name but different parameters is called \fillin.
 \end{question}
 
 \begin{question}
-Data hiding is achieved using \fillin.
+The \fillin block always executes whether an exception occurs or not.
 \end{question}
+
 
 
 % =========================
@@ -231,24 +233,25 @@ Data hiding is achieved using \fillin.
 \section{Section C: Explain / Short Answer Questions (5 \times 2 = 10)}
 
 \begin{problem}
-What is Encapsulation in Java? (Answer in 2--3 sentences)
+What is a class in Java?
 \end{problem}
 
 \begin{problem}
-What is Inheritance? Mention one advantage.
+What is an object?
 \end{problem}
 
 \begin{problem}
-What is method overloading?
+Explain inheritance in Java.
 \end{problem}
 
 \begin{problem}
-What is an interface in Java?
+What is polymorphism?
 \end{problem}
 
 \begin{problem}
 What is exception handling?
 \end{problem}
+
 
 % =========================
 % Part D
@@ -256,44 +259,44 @@ What is exception handling?
 \section{Section D: Programming / Design Questions (2 \times 20 = 40)}
 
 \begin{problem}
-    \textbf{Design Question 1 (Student System using Inheritance)}
-    
-    Design a simple Student system using inheritance.
-    
-    \textbf{Guidelines:}
-    \begin{enumerate}
-      \item Create a base class \texttt{Student} with: \texttt{name}, \texttt{rollNo}.
-      \item Create a subclass \texttt{Result} that stores marks of 3 subjects.
-      \item Add a method to calculate total marks.
-      \item Display student details and total marks.
-    \end{enumerate}
-    
-    \textbf{Note:}
-    \begin{itemize}
-      \item Full Java syntax is NOT required.
-      \item Class structure + key methods are enough.
-    \end{itemize}
-    \end{problem}
-    
+\textbf{Design Question 1 (Student Management System)}
 
-    \begin{problem}
-        \textbf{Design Question 2 (Bank System using Interface)}
-        
-        Design a simple Bank system.
-        
-        \textbf{Guidelines:}
-        \begin{enumerate}
-          \item Create an interface \texttt{Bank} with methods \texttt{deposit()} and \texttt{withdraw()}.
-          \item Create a class \texttt{MyBank} that implements the interface.
-          \item Use \texttt{try-catch} to handle withdrawal when balance is insufficient.
-        \end{enumerate}
-        
-        \textbf{Note:}
-        \begin{itemize}
-          \item Pseudo-code or partial code is acceptable.
-          \item Focus on logic, not full syntax.
-        \end{itemize}
-        \end{problem}
+Design a simple Student Management system using inheritance.
+
+\textbf{Guidelines:}
+\begin{enumerate}
+  \item Create a base class \texttt{Student} with: \texttt{name}, \texttt{rollNo}.
+  \item Create a subclass \texttt{Result} that stores marks of three subjects.
+  \item Add a method to calculate total marks.
+  \item Display student details and result.
+\end{enumerate}
+
+\textbf{Note:}
+\begin{itemize}
+  \item Full Java code is not required.
+  \item Class structure and key methods are sufficient.
+\end{itemize}
+\end{problem}
+
+\begin{problem}
+\textbf{Design Question 2 (Simple Bank System)}
+
+Design a simple Bank system using interface.
+
+\textbf{Guidelines:}
+\begin{enumerate}
+  \item Create an interface \texttt{Bank} with methods \texttt{deposit()} and \texttt{withdraw()}.
+  \item Create a class \texttt{MyBank} that implements the interface.
+  \item Use \texttt{try-catch} to handle a case where withdrawal amount is greater than balance.
+\end{enumerate}
+
+\textbf{Note:}
+\begin{itemize}
+  \item Pseudo-code or partial code is acceptable.
+  \item Focus on program logic.
+\end{itemize}
+\end{problem}
+
         
 
 % =========================

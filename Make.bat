@@ -1,8 +1,9 @@
 @echo off
-for %%B in (**.tex) do latexindent -w -m -l "%%B"
+if not exist build\pdf mkdir build\pdf
+if not exist build\aux mkdir build\aux
 
-latexmk -xelatex -interaction=nonstopmode -shell-escape -synctex=1 demo.tex
+for %%B in (examples\*.tex template\*.tex) do latexindent -w -m -l "%%B"
 
-del  **.aux, **.bbl, **.blg, **.idx, **.ind, **.lof, **.lot, **.out, **.toc, **.acn, **.acr, **.alg, **.glg, **.glo, **.gls, **.ist, **.fls, **.log, **.listing, **.hd, **.dvi, **.xdv, **.fdb_latexmk, **.bak*
+latexmk -xelatex -interaction=nonstopmode -synctex=1 examples\demo.tex
 
 REM pause

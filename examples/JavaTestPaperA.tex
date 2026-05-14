@@ -1,27 +1,27 @@
 % !TEX encoding = UTF-8
 % !TEX program = latexmk
-\documentclass{USTBExam}
+\documentclass{CWNUExam}
 
-\ustbexamsetup{
+\cwnuexamsetup{
 pdf = {
-title    = {概率论与数理统计期末考试试卷B卷},
+title    = {计算机学院软件工程专业2024级JAVA编程语言期末考试试卷A卷},
 author   = {Computer Science Department},
 subject  = {For internal academic use only},
-keywords = {概率论; 数理统计; 期末考试},
+keywords = {Java; Programming; Final Exam},
 },
 }
 
-\ustbexamsetup{
+\cwnuexamsetup{
 title = {
 year       = {\the\year},
 semester   = {1},
-course     = {Probability and Statistics},
+course     = {JAVA Programming Language},
 suffix     = {期末},
-type       = {B},
+type       = {A},
 total-part = {4},
 college    = {计算机学院},
 major      = {软件工程专业},
-grade      = {2023级},
+grade      = {2024级},
 exam-type  = {闭卷},
 exam-time  = {120},
 exam-category = {考试},
@@ -34,223 +34,267 @@ test-type  = {normal},
 \begin{document}
 \maketitle
 
-\section{Part A: Multiple Choice Questions (15 \times 3 = 45)}
+\section{Section A: Multiple Choice Questions (15 \times 3 = 45)}
 
 \begin{question}
-An event in probability is:
+Which keyword is used to inherit a class in Java?
 \paren
 \begin{choices}
-\item A number
-\item A random variable
-\item A subset of the sample space
-\item A probability
+\item implements
+\item extends
+\item new
+\item super
 \end{choices}
 \end{question}
 
 \begin{question}
-The sample space for rolling a die once has:
+Which data type is used to store a single character?
 \paren
 \begin{choices}
-\item 1 outcome
-\item 6 outcomes
-\item 12 outcomes
-\item Infinite outcomes
+\item String
+\item char
+\item int
+\item boolean
 \end{choices}
 \end{question}
 
 \begin{question}
-If $P(A)=0.4$ and $P(B)=0.5$ for independent events, then $P(A\cap B)=$
+Which of the following is NOT a primitive data type?
 \paren
 \begin{choices}
-\item 0.2
-\item 0.9
-\item 0.4
-\item 0.5
+\item int
+\item double
+\item boolean
+\item String
 \end{choices}
 \end{question}
 
 \begin{question}
-The number of combinations of 5 objects taken 3 at a time is:
+Which method is the entry point of a Java program?
 \paren
 \begin{choices}
-\item 10
-\item 20
-\item 30
-\item 60
+\item start()
+\item run()
+\item main()
+\item init()
 \end{choices}
 \end{question}
 
 \begin{question}
-A random variable taking values $0,1,2,\ldots$ is:
+Which access modifier allows access only inside the same class?
 \paren
 \begin{choices}
-\item Bernoulli
-\item Binomial
-\item Poisson
-\item Continuous
+\item public
+\item protected
+\item private
+\item default
 \end{choices}
 \end{question}
 
 \begin{question}
-The mean of a Poisson($\lambda$) random variable is:
+Which keyword is used to create an object in Java?
 \paren
 \begin{choices}
-\item $1/\lambda$
-\item $\lambda$
-\item $\lambda^2$
-\item $\sqrt{\lambda}$
+\item class
+\item object
+\item new
+\item this
 \end{choices}
 \end{question}
 
 \begin{question}
-For a Binomial random variable, the variance is:
+Which keyword refers to the current object?
 \paren
 \begin{choices}
-\item $np$
-\item $p(1-p)$
-\item $np(1-p)$
-\item $n(1-p)$
+\item super
+\item this
+\item current
+\item self
 \end{choices}
 \end{question}
 
 \begin{question}
-The probability for a continuous random variable is calculated using:
+Which loop runs at least one time?
 \paren
 \begin{choices}
-\item Summation
-\item Counting
-\item Integration
-\item Multiplication
+\item for
+\item while
+\item do-while
+\item foreach
 \end{choices}
 \end{question}
 
 \begin{question}
-The exponential distribution is defined on:
+Which keyword is used to manually throw an exception?
 \paren
 \begin{choices}
-\item $(-\infty,\infty)$
-\item $(0,1)$
-\item $(0,\infty)$
-\item $(-1,1)$
+\item try
+\item catch
+\item throw
+\item throws
 \end{choices}
 \end{question}
 
 \begin{question}
-If $f(x)\ge0$ and $\int f(x),dx=1$, then $f(x)$ is a:
+Which block always executes whether exception occurs or not?
 \paren
 \begin{choices}
-\item Distribution
-\item Density function
-\item Random variable
-\item Probability
+\item try
+\item catch
+\item final
+\item finally
 \end{choices}
 \end{question}
 
 \begin{question}
-Covariance measures:
+Which feature supports method overriding?
 \paren
 \begin{choices}
-\item Mean
-\item Spread
-\item Linear relationship
-\item Probability
+\item Encapsulation
+\item Inheritance
+\item Abstraction
+\item Compilation
 \end{choices}
 \end{question}
 
 \begin{question}
-If $X$ and $Y$ are independent, then:
+Which of the following best describes polymorphism?
 \paren
 \begin{choices}
-\item $E[XY]=E[X]E[Y]$
-\item $E[XY]=0$
-\item $\mathrm{Var}(XY)=0$
-\item $X=Y$
+\item Same method name, different classes
+\item Same variable name
+\item Same class name
+\item Same package name
 \end{choices}
 \end{question}
 
 \begin{question}
-The sample mean $\bar X$ is an estimator of:
+Which of the following is an interface keyword?
 \paren
 \begin{choices}
-\item Variance
-\item Median
-\item Population mean
-\item Mode
+\item class
+\item interface
+\item abstract
+\item implements
 \end{choices}
 \end{question}
 
 \begin{question}
-The Central Limit Theorem requires:
+Which exception occurs when dividing by zero?
 \paren
 \begin{choices}
-\item Normal population
-\item Large sample size
-\item Discrete variables only
-\item Zero variance
+\item IOException
+\item NullPointerException
+\item ArithmeticException
+\item ArrayException
 \end{choices}
 \end{question}
 
 \begin{question}
-Least squares estimation is mainly used in:
+Which collection is used to store elements in order?
 \paren
 \begin{choices}
-\item Hypothesis testing
-\item Parameter estimation
-\item Sampling
-\item Simulation
+\item Set
+\item Map
+\item List
+\item Queue
 \end{choices}
 \end{question}
 
-\section{Part B: Fill in the Blanks (5 \times 1 = 5)}
+
+\section{Section B: Fill in the Blanks (5 \times 1 = 5)}
 
 \begin{question}
-$P(A\cup B)=P(A)+P(B)-$\fillin.
+Java programs start execution from the \fillin method.
 \end{question}
 
 \begin{question}
-The variance of a Bernoulli($p$) variable is \fillin.
+The parent class of all Java classes is \fillin.
 \end{question}
 
 \begin{question}
-The expected value of a fair die is \fillin.
+The keyword used to inherit a class is \fillin.
 \end{question}
 
 \begin{question}
-The density of a continuous random variable integrates to \fillin.
+The \fillin block is used to handle exceptions.
 \end{question}
 
 \begin{question}
-In the CLT, the limiting distribution is \fillin.
+Data hiding is achieved using \fillin.
 \end{question}
 
-\section{Part C: Term Explanation (5 \times 2 = 10)}
 
-\begin{problem}Random Experiment\end{problem}
-\begin{problem}Conditional Probability\end{problem}
-\begin{problem}Probability Density Function (PDF)\end{problem}
-\begin{problem}Covariance\end{problem}
-\begin{problem}Central Limit Theorem\end{problem}
-
-\section{Part D: Calculation Questions (2 \times 20 = 40)}
+% =========================
+% Part C
+% =========================
+\section{Section C: Explain / Short Answer Questions (5 \times 2 = 10)}
 
 \begin{problem}
-A disease affects 2% of a population. A test detects the disease correctly 95% of the time and has a false positive rate of 5%.
-\begin{enumerate}
-\item Write the formula for $P(D\mid +)$.
-\item Explain what this probability represents.
-\end{enumerate}
+What is Encapsulation in Java? (Answer in 2--3 sentences)
 \end{problem}
 
 \begin{problem}
-Let a random variable $X$ have density $f(x)=2x$, $0<x<1$.
-\begin{enumerate}
-\item Find $E[X]$.
-\item Find $\mathrm{Var}(X)$.
-\end{enumerate}
+What is Inheritance? Mention one advantage.
 \end{problem}
 
+\begin{problem}
+What is method overloading?
+\end{problem}
 
+\begin{problem}
+What is an interface in Java?
+\end{problem}
 
+\begin{problem}
+What is exception handling?
+\end{problem}
+
+% =========================
+% Part D
+% =========================
+\section{Section D: Programming / Design Questions (2 \times 20 = 40)}
+
+\begin{problem}
+    \textbf{Design Question 1 (Student System using Inheritance)}
+    
+    Design a simple Student system using inheritance.
+    
+    \textbf{Guidelines:}
+    \begin{enumerate}
+      \item Create a base class \texttt{Student} with: \texttt{name}, \texttt{rollNo}.
+      \item Create a subclass \texttt{Result} that stores marks of 3 subjects.
+      \item Add a method to calculate total marks.
+      \item Display student details and total marks.
+    \end{enumerate}
+    
+    \textbf{Note:}
+    \begin{itemize}
+      \item Full Java syntax is NOT required.
+      \item Class structure + key methods are enough.
+    \end{itemize}
+    \end{problem}
+    
+
+    \begin{problem}
+        \textbf{Design Question 2 (Bank System using Interface)}
+        
+        Design a simple Bank system.
+        
+        \textbf{Guidelines:}
+        \begin{enumerate}
+          \item Create an interface \texttt{Bank} with methods \texttt{deposit()} and \texttt{withdraw()}.
+          \item Create a class \texttt{MyBank} that implements the interface.
+          \item Use \texttt{try-catch} to handle withdrawal when balance is insufficient.
+        \end{enumerate}
+        
+        \textbf{Note:}
+        \begin{itemize}
+          \item Pseudo-code or partial code is acceptable.
+          \item Focus on logic, not full syntax.
+        \end{itemize}
+        \end{problem}
+        
 
 % =========================
 % Answer Sheet (One Page)
@@ -345,7 +389,5 @@ Let a random variable $X$ have density $f(x)=2x$, $0<x<1$.
 \underline{\hspace{17cm}}\\[0.35cm]
 \underline{\hspace{17cm}}\\[0.35cm]
 \underline{\hspace{17cm}}\\[0.35cm]
-
-\end{document}
 
 \end{document}

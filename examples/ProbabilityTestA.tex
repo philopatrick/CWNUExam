@@ -1,27 +1,27 @@
 % !TEX encoding = UTF-8
 % !TEX program = latexmk
-\documentclass{USTBExam}
+\documentclass{CWNUExam}
 
-\ustbexamsetup{
+\cwnuexamsetup{
 pdf = {
-title    = {计算机学院软件工程专业2024级JAVA编程语言期末考试试卷B卷},
+title    = {概率论与数理统计期末考试试卷A卷},
 author   = {Computer Science Department},
 subject  = {For internal academic use only},
-keywords = {Java; Programming; Final Exam},
+keywords = {概率论; 数理统计; 期末考试},
 },
 }
 
-\ustbexamsetup{
+\cwnuexamsetup{
 title = {
 year       = {\the\year},
 semester   = {1},
-course     = {JAVA Programming Language},
+course     = {Probability and Statistics},
 suffix     = {期末},
 type       = {B},
 total-part = {4},
 college    = {计算机学院},
 major      = {软件工程专业},
-grade      = {2024级},
+grade      = {2023级},
 exam-type  = {闭卷},
 exam-time  = {120},
 exam-category = {考试},
@@ -34,270 +34,221 @@ test-type  = {normal},
 \begin{document}
 \maketitle
 
-\section{Section A: Multiple Choice Questions (15 \times 3 = 45)}
+\section{Part A: Multiple Choice Questions (15 \times 3 = 45)}
 
 \begin{question}
-Which keyword is used to create a class in Java?
+A random experiment is one which:
 \paren
 \begin{choices}
-\item new
-\item class
-\item object
-\item interface
+\item Has a fixed outcome
+\item Has more than one possible outcome
+\item Always gives equal outcomes
+\item Has probability zero
 \end{choices}
 \end{question}
 
 \begin{question}
-Which data type is used to store decimal numbers?
+The sample space of tossing two coins contains:
 \paren
 \begin{choices}
-\item int
-\item char
-\item float
-\item boolean
+\item 2
+\item 3
+\item 4
+\item 6
 \end{choices}
 \end{question}
 
 \begin{question}
-Default value of a boolean variable is:
+If events $A$ and $B$ are independent, then:
 \paren
 \begin{choices}
-\item true
-\item false
+\item $P(A \cup B)=1$
+\item $P(A\mid B)=P(A)$
+\item $P(A)=P(B)$
+\item $P(A\cap B)=0$
+\end{choices}
+\end{question}
+
+\begin{question}
+The number of permutations of 5 objects taken 2 at a time is:
+\paren
+\begin{choices}
+\item 10
+\item 20
+\item 25
+\item 120
+\end{choices}
+\end{question}
+
+\begin{question}
+The value of $\binom{6}{2}$ is:
+\paren
+\begin{choices}
+\item 6
+\item 12
+\item 15
+\item 30
+\end{choices}
+\end{question}
+
+\begin{question}
+A Bernoulli random variable can take:
+\paren
+\begin{choices}
+\item Any real values
+\item Only positive integers
+\item Values 0 and 1
+\item Values 1 and 2
+\end{choices}
+\end{question}
+
+\begin{question}
+If $X\sim\mathrm{Bin}(n,p)$, then $E[X]$ equals:
+\paren
+\begin{choices}
+\item $p$
+\item $np$
+\item $np(1-p)$
+\item $1/p$
+\end{choices}
+\end{question}
+
+\begin{question}
+A Poisson distribution is used when:
+\paren
+\begin{choices}
+\item $n$ is small, $p$ is large
+\item $n$ is large, $p$ is small
+\item $n$ and $p$ are both large
+\item $n=1$
+\end{choices}
+\end{question}
+
+\begin{question}
+For a continuous random variable $X$:
+\paren
+\begin{choices}
+\item $P(X=a)>0$
+\item $P(X=a)=1$
+\item $P(X=a)=0$
+\item $P(X=a)$ is undefined
+\end{choices}
+\end{question}
+
+\begin{question}
+The uniform distribution on $(0,1)$ has density:
+\paren
+\begin{choices}
+\item $f(x)=x$
+\item $f(x)=e^{-x}$
+\item $f(x)=1$
+\item $f(x)=2x$
+\end{choices}
+\end{question}
+
+\begin{question}
+Variance can be written as:
+\paren
+\begin{choices}
+\item $E[X]$
+\item $E[X^2]-(E[X])^2$
+\item $E[X+1]$
+\item $(E[X])^2$
+\end{choices}
+\end{question}
+
+\begin{question}
+If $X$ and $Y$ are independent, $\mathrm{Cov}(X,Y)$ equals:
+\paren
+\begin{choices}
+\item 1
+\item $-1$
 \item 0
-\item null
+\item Depends on $X,Y$
 \end{choices}
 \end{question}
 
 \begin{question}
-Which symbol is used to access class members?
+The Central Limit Theorem applies when:
 \paren
 \begin{choices}
-\item \texttt{:}
-\item \texttt{.}
-\item \texttt{\#} % 使用 \# 避免参数字符错误
-\item \texttt{->}
+\item Sample size is small
+\item Sample size tends to infinity
+\item Variance is zero
+\item Distribution is normal
 \end{choices}
 \end{question}
 
 \begin{question}
-Which loop is best used when the number of iterations is known?
+Maximum Likelihood Estimation chooses parameters that:
 \paren
 \begin{choices}
-\item for
-\item while
-\item do-while
-\item foreach
+\item Minimize error
+\item Maximize likelihood
+\item Minimize variance
+\item Maximize sample size
 \end{choices}
 \end{question}
 
 \begin{question}
-Which keyword is used for inheritance in Java?
+Least squares estimation minimizes:
 \paren
 \begin{choices}
-\item implements
-\item extends
-\item inherit
-\item super
+\item Absolute errors
+\item Squared errors
+\item Probability
+\item Variance
 \end{choices}
 \end{question}
 
+\section{Part B: Fill in the Blanks (5 \times 1 = 5)}
+
 \begin{question}
-Method overriding occurs in:
-\paren
-\begin{choices}
-\item same class
-\item different classes
-\item interface only
-\item main method
-\end{choices}
+$P(A^c)=1-$\fillin.
 \end{question}
 
 \begin{question}
-Which access modifier allows access within the same package?
-\paren
-\begin{choices}
-\item public
-\item private
-\item protected
-\item default
-\end{choices}
+For a Binomial distribution, $\mathrm{Var}(X)=$\fillin.
 \end{question}
 
 \begin{question}
-Which keyword refers to the parent class object?
-\paren
-\begin{choices}
-\item this
-\item super
-\item parent
-\item base
-\end{choices}
+The sum of probabilities in a sample space equals \fillin.
 \end{question}
 
 \begin{question}
-Which of the following is an interface keyword?
-\paren
-\begin{choices}
-\item class
-\item interface
-\item abstract
-\item extends
-\end{choices}
+A continuous probability density function must be \fillin.
 \end{question}
 
 \begin{question}
-Which exception occurs when dividing by zero?
-\paren
-\begin{choices}
-\item IOException
-\item ArithmeticException
-\item NullPointerException
-\item ArrayIndexOutOfBoundsException
-\end{choices}
+Under the CLT, the standardized sample mean converges to a \fillin\ distribution.
 \end{question}
 
-\begin{question}
-Which block is used to handle exceptions?
-\paren
-\begin{choices}
-\item try
-\item catch
-\item finally
-\item all of these
-\end{choices}
-\end{question}
+\section{Part C: Term Explanation (5 \times 2 = 10)}
 
-\begin{question}
-Which feature of OOP hides data from outside access?
-\paren
-\begin{choices}
-\item Inheritance
-\item Polymorphism
-\item Encapsulation
-\item Abstraction
-\end{choices}
-\end{question}
+\begin{problem}Sample Space\end{problem}
+\begin{problem}Event\end{problem}
+\begin{problem}Probability Mass Function (PMF)\end{problem}
+\begin{problem}Independence of events\end{problem}
+\begin{problem}Expected Value\end{problem}
 
-\begin{question}
-Which class is the parent of all Java classes?
-\paren
-\begin{choices}
-\item System
-\item Class
-\item Object
-\item Main
-\end{choices}
-\end{question}
-
-\begin{question}
-Which collection does NOT allow duplicate elements?
-\paren
-\begin{choices}
-\item List
-\item ArrayList
-\item Set
-\item Vector
-\end{choices}
-\end{question}
-
-
-
-\section{Section B: Fill in the Blanks (5 \times 1 = 5)}
-
-\begin{question}
-The keyword used to define a class is \fillin.
-\end{question}
-
-\begin{question}
-An array stores \fillin type of values.
-\end{question}
-
-\begin{question}
-The keyword used to handle exceptions is \fillin.
-\end{question}
-
-\begin{question}
-A method with the same name but different parameters is called \fillin.
-\end{question}
-
-\begin{question}
-The \fillin block always executes whether an exception occurs or not.
-\end{question}
-
-
-
-% =========================
-% Part C
-% =========================
-\section{Section C: Explain / Short Answer Questions (5 \times 2 = 10)}
+\section{Part D: Calculation Questions (2 \times 20 = 40)}
 
 \begin{problem}
-What is a class in Java?
-\end{problem}
-
-\begin{problem}
-What is an object?
-\end{problem}
-
-\begin{problem}
-Explain inheritance in Java.
-\end{problem}
-
-\begin{problem}
-What is polymorphism?
-\end{problem}
-
-\begin{problem}
-What is exception handling?
-\end{problem}
-
-
-% =========================
-% Part D
-% =========================
-\section{Section D: Programming / Design Questions (2 \times 20 = 40)}
-
-\begin{problem}
-\textbf{Design Question 1 (Student Management System)}
-
-Design a simple Student Management system using inheritance.
-
-\textbf{Guidelines:}
+A box contains 3 red balls and 2 blue balls. Two balls are drawn without replacement.
 \begin{enumerate}
-  \item Create a base class \texttt{Student} with: \texttt{name}, \texttt{rollNo}.
-  \item Create a subclass \texttt{Result} that stores marks of three subjects.
-  \item Add a method to calculate total marks.
-  \item Display student details and result.
+\item Find the total number of possible outcomes.
+\item Find the probability that both balls are red.
 \end{enumerate}
-
-\textbf{Note:}
-\begin{itemize}
-  \item Full Java code is not required.
-  \item Class structure and key methods are sufficient.
-\end{itemize}
 \end{problem}
 
 \begin{problem}
-\textbf{Design Question 2 (Simple Bank System)}
-
-Design a simple Bank system using interface.
-
-\textbf{Guidelines:}
+Let $X$ be the outcome when a fair die is thrown.
 \begin{enumerate}
-  \item Create an interface \texttt{Bank} with methods \texttt{deposit()} and \texttt{withdraw()}.
-  \item Create a class \texttt{MyBank} that implements the interface.
-  \item Use \texttt{try-catch} to handle a case where withdrawal amount is greater than balance.
+\item Find $E[X]$.
+\item Find $\mathrm{Var}(X)$.
 \end{enumerate}
-
-\textbf{Note:}
-\begin{itemize}
-  \item Pseudo-code or partial code is acceptable.
-  \item Focus on program logic.
-\end{itemize}
 \end{problem}
 
-        
 
 % =========================
 % Answer Sheet (One Page)
@@ -392,5 +343,7 @@ Design a simple Bank system using interface.
 \underline{\hspace{17cm}}\\[0.35cm]
 \underline{\hspace{17cm}}\\[0.35cm]
 \underline{\hspace{17cm}}\\[0.35cm]
+
+\end{document}
 
 \end{document}
